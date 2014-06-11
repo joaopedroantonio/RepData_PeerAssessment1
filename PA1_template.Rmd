@@ -18,10 +18,12 @@ The histogram for daily number of steps is created using the "tapply" function,
 applying the "sum" function to the "steps" column of the dataset, on a per 
 "date" basis.
 
-```{r}
+```{r, fig.width=10}
 day.histogram <- data.frame(steps = tapply(activity$steps, activity$date, sum))
 day.histogram$date <- rownames(day.histogram)
 day.histogram <- day.histogram[complete.cases(day.histogram),]
+plot(as.Date(day.histogram$date), day.histogram$steps, type="h", xlab="Date", 
+     ylab="Number of Steps", lwd=5)
 summary(day.histogram)
 ```
 
@@ -74,9 +76,11 @@ activity2$steps <- apply(activity2, 1, fill.na, means=interval.means)
 There is a total of **`r na.number`** NA values in the original dataset. The
 new histogram of number of steps taken per day is calculated as earlier.
 
-```{r}
+```{r, fig.width=10}
 day.histogram2 <- data.frame(steps = tapply(activity2$steps, activity2$date, sum))
 day.histogram2$date <- rownames(day.histogram2)
+plot(as.Date(day.histogram2$date), day.histogram2$steps, type="h", xlab="Date", 
+     ylab="Number of Steps", lwd=5)
 summary(day.histogram2)
 ```
 
@@ -100,7 +104,7 @@ dataset used in this assignment (i.e. without the NA values).
 A graphic similar to the previous on is created with two facets, one for the
 average number of steps per interval for weekdays and another for weekends.
 
-```{r}
+```{r, fig.width=10}
 Sys.setlocale("LC_TIME", "English")
 weekday <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
 weekend <- c("Saturday", "Sunday")

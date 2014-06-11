@@ -24,6 +24,13 @@ applying the "sum" function to the "steps" column of the dataset, on a per
 day.histogram <- data.frame(steps = tapply(activity$steps, activity$date, sum))
 day.histogram$date <- rownames(day.histogram)
 day.histogram <- day.histogram[complete.cases(day.histogram),]
+plot(as.Date(day.histogram$date), day.histogram$steps, type="h", xlab="Date", 
+     ylab="Number of Steps", lwd=5)
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
+```r
 summary(day.histogram)
 ```
 
@@ -93,6 +100,13 @@ new histogram of number of steps taken per day is calculated as earlier.
 ```r
 day.histogram2 <- data.frame(steps = tapply(activity2$steps, activity2$date, sum))
 day.histogram2$date <- rownames(day.histogram2)
+plot(as.Date(day.histogram2$date), day.histogram2$steps, type="h", xlab="Date", 
+     ylab="Number of Steps", lwd=5)
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+
+```r
 summary(day.histogram2)
 ```
 
